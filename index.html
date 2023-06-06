@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let sitio = { nombre: "ecamp" };
+
+let handler = {
+  get(target, property) {
+    console.log("Usando un GET");
+    return Reflect.get(target, property);
+  },
+  set(target, property, value) {
+    console.log("Usando un SET");
+    return Reflect.set(target, property, value);
+  }
+};
+
+let proxySitio = new Proxy(sitio, handler);
+
+let nombre = proxySitio.nombre;
+proxySitio.nombre = "ECAMP";
+
+console.log(nombre); 
+
+    </script>
+</body>
+</html>
